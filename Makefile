@@ -1,13 +1,13 @@
-PROJECT = cedar-demo
+PROJECT = cedar-jpeg-decode-demo
 
 BINARY = $(PROJECT)
-SOURCES = cedar-demo.c
+SOURCES = $(PROJECT).c
 OBJECTS = $(SOURCES:.c=.o)
 DEPENDS = $(SOURCES:.c=.d)
 
 CC = gcc
 CFLAGS =
-LDFLAGS =
+LDFLAGS = -lcedar_vdecoder -lcedar_common
 
 all: $(BINARY)
 

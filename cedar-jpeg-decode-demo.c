@@ -65,6 +65,33 @@ VideoPicture *picture_decode_tiled(VideoDecoder *decoder,
 
 	printf("Decoded picture %x: %ux%u at virt addr %x/%x, phy addr %#x/%#x\n", picture_tiled, picture_tiled->nWidth, picture_tiled->nHeight, picture_tiled->pData0, picture_tiled->pData1, MemAdapterGetPhysicAddress(picture_tiled->pData0), MemAdapterGetPhysicAddress(picture_tiled->pData1));
 
+	printf("Decoded picture pixel format: ");
+
+	switch (picture_tiled->ePixelFormat) {
+	case PIXEL_FORMAT_YUV_PLANER_420:
+		printf("YUV 4:2:0 planar\n");
+		break;
+	case PIXEL_FORMAT_YUV_PLANER_422:
+		printf("YUV 4:2:2 planar\n");
+		break;
+	case PIXEL_FORMAT_YUV_PLANER_444:
+		printf("YUV 4:4:4 planar\n");
+		break;
+	case PIXEL_FORMAT_YUV_MB32_420:
+		printf("YUV 4:2:0 MB-32 tiled\n");
+		break;
+	case PIXEL_FORMAT_YUV_MB32_422:
+		printf("YUV 4:2:2 MB-32 tiled\n");
+		break;
+	case PIXEL_FORMAT_YUV_MB32_444:
+		printf("YUV 4:2:2 MB-32 tiled\n");
+		break;
+	case PIXEL_FORMAT_DEFAULT:
+	default:
+		printf("unknown\n");
+		break;
+	}
+
 	return picture_tiled;
 
 error:
